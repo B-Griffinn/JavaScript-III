@@ -144,3 +144,96 @@ Humanoid.prototype.greet = function(){
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+
+  function Villian(attributes){
+    Humanoid.call(this, attributes); 
+  };
+  
+//Prototypes
+  Villian.prototype.removeHealth = function() {
+    this.healthPoints -= 5;
+  } 
+  Villian.prototype.healthLevel = function() {
+    if(this.healthPoints === 0) {
+      return ` ${this.name} has died! `
+    }
+  };
+
+  Hero.prototype.removeHealth = function() {
+    this.healthPoints -= 1;
+  } 
+  Hero.prototype.healthLevel = function() {
+    if(this.healthPoints === 0) {
+      return ` ${this.name} has died! `
+    }
+  };
+
+
+//HERO
+  Hero.prototype.absorb = function counter() {
+    let count = this.healthPoints;
+    return function () {
+      count -= 1
+      return count;
+    };
+  };
+//VILLIAN
+  Villian.prototype.strike = function counter() {
+    let count = this.healthPoints;
+    return function () {
+      count -= 4
+      return count;
+    };
+  };
+
+  //HERO + Villian Objects 
+  const villain = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 15,
+    name: 'Mt. Hero',
+    team: 'Heavan',
+    weapons: [
+      'Sword',
+      'Fist',
+    ],
+    language: 'Elvish',
+  });
+
+const Villain = new Villian({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 4,
+  },
+  healthPoints: 15,
+  name: 'Villy-Vil',
+  team: 'Hell',
+  weapons: [
+    'Sythe',
+    'Fireball',
+  ],
+  language: 'Elvish',
+});
+
+  console.log(Hero);
+  console.log(Villian);
+
+
+
+
+
+
+
+
+
+
+
+
+  
