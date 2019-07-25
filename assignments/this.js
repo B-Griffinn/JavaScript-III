@@ -11,11 +11,11 @@
 
 // Principle 1
 // code example for Window Binding
-function sayName(name) {
+function sayName() {
     console.log(this);
-    return name;
+    // return name;
 };
-sayName("Benjamin");
+sayName();
 
 // Principle 2
 // code example for Implicit Binding
@@ -30,26 +30,31 @@ myObj.sayHello('Ben'); //object to the left of the dot === myObj
 
 // Principle 3
 // code example for New Binding
-function CordialPerson(greeter) {
+function CordialPerson1(greeter) {
     this.greeting = 'Hello';
     this.greeter = greeter;
     this.speak = function() {
         console.log(this.greeting + this.greeter);
         console.log(this);
-    }
+    };
 };
 const benny = new CordialPerson('Benny');
-benny.speak();
+// benny.speak();
 
 // Principle 4
 // code example for Explicit Binding
-function CordialPerson(greeter) {
-    this.greeting = 'Hello';
-    this.greeter = greeter;
-    this.speak = function() {
-        console.log(this.greeting + this.greeter);
-        console.log(this);
-    }
+function CordialPerson(greeter, unique) {
+    CordialPerson1.call(this, greeter);
+    this.unique = unique;
+    // this.greeting = 'Hello';
+    // this.greeter = greeter;
 };
-const benny = new CordialPerson('Benny');
-benny.speak.call(Benny);
+
+// this.speak = function() {
+//     console.log(this.greeting + this.greeter);
+//     console.log(this);
+// };
+// const speaking = CordialPerson.call(this, arg1)
+console.log(new CordialPerson().greeter);
+console.log(new CordialPerson('Me', 'this is unique').greeting);
+console.log(new CordialPerson('Me', 'this is unique').unique);
